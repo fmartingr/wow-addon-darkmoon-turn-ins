@@ -12,6 +12,7 @@
 ## Version: 1.0.0
 ## X-License: MIT
 ## OptionalDeps: Baganator, Syndicator
+## IconTexture: Interface\AddOns\DarkmoonTurnIns\assets\icon
 ## SavedVariables: DarkmoonTurnInsDB
 Libs/LibStub/LibStub.lua
 Libs/CallbackHandler-1.0/CallbackHandler-1.0.lua
