@@ -1,6 +1,17 @@
 # Darkmoon Turn-ins
 
-Addon for WoW Forever. It shows which items serve a Darkmoon Faire turn-in quest.
+Addon for WoW Forever (interface 16001). It shows which items serve a Darkmoon Faire turn-in quest.
+
+## Features
+
+- Pink glow on the item button in the Blizzard bags, bank, loot window, and mail attachments.
+- Pink corner marker in Baganator (when Baganator is loaded).
+- Pink tooltip lines: "Darkmoon Faire quest item" and "Turn in N - you have M".
+- Counts of other characters in the tooltip (when Syndicator is loaded and has data).
+- Minimap button and a window that counts what you hold against what each quest needs.
+
+The glow is always on. The client has no reliable flag for an open Faire.
+Baganator has no border hook, so Baganator shows a marker, not a full glow.
 
 ## Install
 
@@ -15,9 +26,25 @@ make install WOW_DIR="/path/to/World of Warcraft/_forever_"
 
 ## Optional addons
 
-- Baganator
-- Syndicator
+- Baganator: pink corner marker.
+- Syndicator: other-characters lines in the tooltip.
+
+## Languages
+
+enUS (also enGB), deDE, esES, esMX, frFR, itIT, ptBR. Other locales use enUS.
+
+## Development
+
+`make deps`, `make test`, `make lint`, `make fmt-check`, `make coverage`.
+Manual checks are in `docs/manual-checklist.md`.
+The turn-in data is in `DarkmoonTurnIns/Data.lua` with its sources in the file header.
+
+## Translations to review
+
+The translations were written by the agent and no native speaker reviewed them.
+The strings are in `DarkmoonTurnIns/Locales.lua`, one block for each locale.
+Review all keys of deDE, esES, esMX, frFR, itIT, and ptBR.
 
 ## License
 
-License: not chosen yet.
+License: not chosen yet. The bundled libraries keep their own licenses in `DarkmoonTurnIns/Libs/LICENSES.txt`.

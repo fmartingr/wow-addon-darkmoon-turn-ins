@@ -9,9 +9,13 @@
 ## Notes-frFR: Lueur rose, mention dans l'info-bulle et compteur pour les objets de remise de la Foire de Sombrelune.
 ## Notes-itIT: Alone rosa, avviso nel tooltip e contatore per gli oggetti di consegna della Fiera di Lunacupa.
 ## Notes-ptBR: Brilho rosa, aviso na dica e contador para os itens de entrega da Feira da Lua Negra.
-## Version: 0.1.0
+## Version: 1.0.0
 ## OptionalDeps: Baganator, Syndicator
 ## SavedVariables: DarkmoonTurnInsDB
+Libs/LibStub/LibStub.lua
+Libs/CallbackHandler-1.0/CallbackHandler-1.0.lua
+Libs/LibDataBroker-1.1/LibDataBroker-1.1.lua
+Libs/LibDBIcon-1.0/LibDBIcon-1.0.lua
 Core.lua
 Locales.lua
 Data.lua
@@ -19,3 +23,5 @@ Counts.lua
 Tooltip.lua
 Glow.lua
 Baganator.lua
+Window.lua
+Minimap.lua
