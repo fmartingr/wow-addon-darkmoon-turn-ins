@@ -7,6 +7,7 @@ local GLOW_TEXTURE = "Interface\\Buttons\\UI-ActionButton-Border"
 local GLOW_SCALE = 1.8
 local glows = setmetatable({}, { __mode = "k" })
 local frames = {}
+local mailHooked = false
 
 function Glow.ItemIDFrom(itemIDOrLink)
 	if type(itemIDOrLink) == "number" then
@@ -107,10 +108,30 @@ local function hookFrame(frame)
 	return true
 end
 
+-- InboxFrame_Update lives in the load-on-demand addon Blizzard_MailFrame.
+function Glow.HookMail()
+	if mailHooked then
+		return
+	end
+	if type(_G.InboxFrame_Update) ~= "function" then
+		return
+	end
+	mailHooked = true
+	hooksecurefunc("InboxFrame_Update", function()
+		for i = 1, _G.INBOXITEMS_TO_DISPLAY or 7 do
+			local button = _G["MailItem" .. i .. "Button"]
+			if button and not button.hasItem then
+				Glow.Update(button, nil)
+			end
+		end
+	end)
+end
+
 function Glow.Install()
 	local function step(key, fn)
-		if not pcall(fn) then
-			ns.ReportOnce("glow-" .. key, ns.L.HOOK_FAILED)
+		local ok, err = pcall(fn)
+		if not ok then
+			ns.ReportOnce("glow-" .. key, ns.L.HOOK_FAILED, err)
 		end
 	end
 
@@ -130,25 +151,21 @@ function Glow.Install()
 		end
 	end)
 
-	step("mail", function()
-		hooksecurefunc("InboxFrame_Update", function()
-			for i = 1, _G.INBOXITEMS_TO_DISPLAY or 7 do
-				local button = _G["MailItem" .. i .. "Button"]
-				if button and not button.hasItem then
-					Glow.Update(button, nil)
-				end
-			end
-		end)
-	end)
+	step("mail", Glow.HookMail)
 
 	step("events", function()
 		ns.events:RegisterEvent("BAG_UPDATE_DELAYED")
 	end)
 end
 
-function Glow.OnEvent(event)
+function Glow.OnEvent(event, name)
 	if event == "BAG_UPDATE_DELAYED" then
 		Glow.RefreshAll()
+	elseif event == "ADDON_LOADED" and name == "Blizzard_MailFrame" then
+		local ok, err = pcall(Glow.HookMail)
+		if not ok then
+			ns.ReportOnce("glow-mail", ns.L.HOOK_FAILED, err)
+		end
 	end
 end
 

@@ -103,6 +103,7 @@ describe("Glow", function()
 			local one = wow.newFrame("ContainerFrame1")
 			one.Update = function() end
 			_G.ContainerFrame1 = one
+			_G.InboxFrame_Update = function() end
 			ns.Glow.Install()
 			assert.equals("SetItemButtonQuality", hooks[1].target)
 			assert.equals(4, #hooks)
@@ -182,7 +183,23 @@ describe("Glow", function()
 			assert.is_true(#registered == 1)
 		end)
 
+		it("hooks the inbox when Blizzard_MailFrame loads later", function()
+			_G.InboxFrame_Update = nil
+			ns.Glow.Install()
+			for _, h in ipairs(hooks) do
+				assert.is_not.equal("InboxFrame_Update", h.target)
+			end
+			_G.InboxFrame_Update = function() end
+			ns.Glow.OnEvent("ADDON_LOADED", "Blizzard_MailFrame")
+			local found = false
+			for _, h in ipairs(hooks) do
+				found = found or h.target == "InboxFrame_Update"
+			end
+			assert.is_true(found)
+		end)
+
 		it("clears the glow on mail rows without an attachment", function()
+			_G.InboxFrame_Update = function() end
 			ns.Glow.Install()
 			local hook
 			for _, h in ipairs(hooks) do

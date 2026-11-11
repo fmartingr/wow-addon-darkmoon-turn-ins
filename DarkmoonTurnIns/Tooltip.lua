@@ -51,9 +51,9 @@ function Tooltip.Install()
 		if type(data) ~= "table" or type(data.id) ~= "number" then
 			return
 		end
-		local ok = pcall(Tooltip.Append, tooltip, data.id)
+		local ok, err = pcall(Tooltip.Append, tooltip, data.id)
 		if not ok then
-			ns.ReportOnce("tooltip", L.HOOK_FAILED)
+			ns.ReportOnce("tooltip", L.HOOK_FAILED, err)
 		end
 	end)
 	return true

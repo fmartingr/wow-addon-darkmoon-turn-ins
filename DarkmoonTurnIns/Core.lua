@@ -26,11 +26,16 @@ function ns.Print(msg)
 	end
 end
 
-function ns.ReportOnce(key, msg)
+function ns.ReportOnce(key, msg, err)
 	if reported[key] then
 		return false
 	end
 	reported[key] = true
+	if err ~= nil then
+		msg = string.format("%s [%s: %s]", msg, key, tostring(err))
+	else
+		msg = string.format("%s [%s]", msg, key)
+	end
 	ns.Print(msg)
 	return true
 end
@@ -51,7 +56,7 @@ ns.events:SetScript("OnEvent", function(_, event, name)
 	elseif event == "PLAYER_LOGIN" then
 		ns.OnLogin()
 	elseif ns.Glow then
-		ns.Glow.OnEvent(event)
+		ns.Glow.OnEvent(event, name)
 	end
 end)
 
@@ -59,9 +64,9 @@ ns.startup = {}
 
 function ns.OnLogin()
 	for _, fn in ipairs(ns.startup) do
-		local ok = pcall(fn)
+		local ok, err = pcall(fn)
 		if not ok then
-			ns.ReportOnce("startup", ns.L.HOOK_FAILED)
+			ns.ReportOnce("startup", ns.L.HOOK_FAILED, err)
 		end
 	end
 end

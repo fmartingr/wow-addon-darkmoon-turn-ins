@@ -65,7 +65,7 @@ function Counts.GetOthers(itemID)
 	end
 	local ok, current, info = pcall(query, itemID)
 	if not ok then
-		ns.ReportOnce("syndicator", ns.L.HOOK_FAILED)
+		ns.ReportOnce("syndicator", ns.L.HOOK_FAILED, current)
 		return others
 	end
 	if type(info) ~= "table" or type(info.characters) ~= "table" then

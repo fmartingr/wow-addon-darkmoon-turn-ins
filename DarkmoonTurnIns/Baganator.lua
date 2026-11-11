@@ -20,7 +20,7 @@ function Module.Register()
 	if type(Baganator) ~= "table" or type(Baganator.API) ~= "table" or not Baganator.API.RegisterCornerWidget then
 		return false
 	end
-	local ok = pcall(function()
+	local ok, err = pcall(function()
 		Baganator.API.RegisterCornerWidget(ns.L.WINDOW_TITLE, "darkmoonturnins", function(_, details)
 			return ns.Data.IsTurnInItem(Module.ItemIDOf(details))
 		end, function(itemButton)
@@ -32,7 +32,7 @@ function Module.Register()
 		end, { corner = "top_left", priority = 1 }, true)
 	end)
 	if not ok then
-		ns.ReportOnce("baganator", ns.L.HOOK_FAILED)
+		ns.ReportOnce("baganator", ns.L.HOOK_FAILED, err)
 	end
 	return ok
 end
