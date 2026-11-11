@@ -1,0 +1,21 @@
+## Interface: 16001
+## AllowLoadGameType: camelot
+## Title: Darkmoon Turn-ins
+## Notes: Pink glow, tooltip notice, and a counter for Darkmoon Faire turn-in items.
+## Author: Felipe M.
+## Notes-deDE: Rosa Leuchten, Tooltip-Hinweis und Zähler für Gegenstände der Dunkelmond-Jahrmarkt-Abgaben.
+## Notes-esES: Brillo rosa, aviso en el tooltip y contador para los objetos de entregas de la Feria de la Luna Negra.
+## Notes-esMX: Brillo rosa, aviso en el tooltip y contador para los objetos de entregas de la Feria de la Luna Negra.
+## Notes-frFR: Lueur rose, mention dans l'info-bulle et compteur pour les objets de remise de la Foire de Sombrelune.
+## Notes-itIT: Alone rosa, avviso nel tooltip e contatore per gli oggetti di consegna della Fiera di Lunacupa.
+## Notes-ptBR: Brilho rosa, aviso na dica e contador para os itens de entrega da Feira da Lua Negra.
+## Version: 0.1.0
+## OptionalDeps: Baganator, Syndicator
+## SavedVariables: DarkmoonTurnInsDB
+Core.lua
+Locales.lua
+Data.lua
+Counts.lua
+Tooltip.lua
+Glow.lua
+Baganator.lua
