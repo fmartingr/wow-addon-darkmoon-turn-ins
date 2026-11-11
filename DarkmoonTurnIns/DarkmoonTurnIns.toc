@@ -10,6 +10,7 @@
 ## Notes-itIT: Alone rosa, avviso nel tooltip e contatore per gli oggetti di consegna della Fiera di Lunacupa.
 ## Notes-ptBR: Brilho rosa, aviso na dica e contador para os itens de entrega da Feira da Lua Negra.
 ## Version: 1.0.0
+## X-License: MIT
 ## OptionalDeps: Baganator, Syndicator
 ## SavedVariables: DarkmoonTurnInsDB
 Libs/LibStub/LibStub.lua
