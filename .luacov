@@ -1,0 +1,12 @@
+return {
+	include = {
+		"DarkmoonTurnIns/Core$",
+		"DarkmoonTurnIns/Locales$",
+		"DarkmoonTurnIns/Data$",
+		"DarkmoonTurnIns/Counts$",
+		"DarkmoonTurnIns/Tooltip$",
+		"DarkmoonTurnIns/Glow$",
+		"DarkmoonTurnIns/Window$",
+	},
+	reporter = "default",
+}
