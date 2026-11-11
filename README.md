@@ -47,4 +47,4 @@ Review all keys of deDE, esES, esMX, frFR, itIT, and ptBR.
 
 ## License
 
-License: not chosen yet. The bundled libraries keep their own licenses in `DarkmoonTurnIns/Libs/LICENSES.txt`.
+License: MIT, see `LICENSE`. The bundled libraries keep their own licenses in `DarkmoonTurnIns/Libs/LICENSES.txt`.
