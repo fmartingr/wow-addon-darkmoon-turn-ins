@@ -108,6 +108,7 @@ function M.installStubs()
 	_G.Enum = { TooltipDataType = { Item = 0 } }
 	_G.C_Item = {}
 	_G.UISpecialFrames = {}
+	_G.SlashCmdList = {}
 	_G.DEFAULT_CHAT_FRAME = {
 		lines = {},
 		AddMessage = function(self, text)
@@ -135,7 +136,7 @@ function M.boot(opts)
 		end
 	end
 	for _, name in ipairs(M.readToc()) do
-		if name:match("%.lua$") and (not wanted or wanted[name]) then
+		if name:match("%.lua$") and not name:match("^Libs/") and (not wanted or wanted[name]) then
 			assert(loadfile(ADDON_DIR .. name))(ADDON_NAME, ns)
 		end
 	end
