@@ -9,7 +9,7 @@
 ## Notes-frFR: Lueur rose, mention dans l'info-bulle et compteur pour les objets de remise de la Foire de Sombrelune.
 ## Notes-itIT: Alone rosa, avviso nel tooltip e contatore per gli oggetti di consegna della Fiera di Lunacupa.
 ## Notes-ptBR: Brilho rosa, aviso na dica e contador para os itens de entrega da Feira da Lua Negra.
-## Version: 1.0.0
+## Version: 0.1.0
 ## X-License: MIT
 ## X-Curse-Project-ID: 1798175
 ## OptionalDeps: Baganator, Syndicator

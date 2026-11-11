@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0
+## 0.1.0
 
 - Pink glow in Blizzard bags, bank, loot window, and mail.
 - Pink corner marker in Baganator.
@@ -9,4 +9,3 @@
 - Minimap button and counts window.
 - Seven locales.
 
-## 0.1.0 - Project scaffold
