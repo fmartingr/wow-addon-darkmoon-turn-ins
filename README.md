@@ -1,5 +1,9 @@
 # Darkmoon Turn-ins
 
+<p align="center">
+  <img src="assets/icon.png" alt="Darkmoon Turn-ins icon" width="128">
+</p>
+
 Addon for WoW Forever (interface 16001). It shows which items serve a Darkmoon Faire turn-in quest.
 
 ## Features
