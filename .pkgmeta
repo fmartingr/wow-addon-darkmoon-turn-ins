@@ -4,6 +4,10 @@ manual-changelog:
   markup-type: markdown
 move-folders:
   DarkmoonTurnIns/DarkmoonTurnIns: DarkmoonTurnIns
+relations:
+  optional-dependency:
+    - baganator
+    - syndicator
 ignore:
   - .github
   - assets
