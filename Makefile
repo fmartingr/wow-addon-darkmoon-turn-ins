@@ -3,6 +3,7 @@ SHELL := bash
 .DEFAULT_GOAL := help
 
 LUA_COVERAGE_MIN ?= 80
+BUSTED_FLAGS ?=
 ADDON := DarkmoonTurnIns
 
 LR_PATH := $(shell luarocks --lua-version=5.1 --local path --lr-path 2>/dev/null)
@@ -22,7 +23,7 @@ deps: ## Install busted, luacov and luacheck with luarocks (Lua 5.1)
 	luarocks --lua-version=5.1 --local install luacheck 1.2.0-1
 
 test: ## Run the busted tests
-	busted
+	busted $(BUSTED_FLAGS)
 
 lint: ## Run luacheck
 	luacheck .
@@ -35,7 +36,7 @@ fmt-check: ## Check the Lua format
 
 coverage: ## Run busted with luacov and check the threshold
 	rm -f luacov.stats.out luacov.report.out
-	busted --coverage
+	busted --coverage $(BUSTED_FLAGS)
 	luacov
 	LUA_COVERAGE_MIN=$(LUA_COVERAGE_MIN) bash scripts/coverage.sh luacov.report.out
 

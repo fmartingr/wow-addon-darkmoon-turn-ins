@@ -1,0 +1,22 @@
+package-as: DarkmoonTurnIns
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+move-folders:
+  DarkmoonTurnIns/DarkmoonTurnIns: DarkmoonTurnIns
+ignore:
+  - .github
+  - assets
+  - docs
+  - scripts
+  - spec
+  - specs
+  - Makefile
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+  - stylua.toml
+  - .styluaignore
+  - .luacheckrc
+  - .luacov
+  - .busted

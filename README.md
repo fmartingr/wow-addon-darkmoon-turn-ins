@@ -52,6 +52,7 @@ License: MIT, see `LICENSE`. The bundled libraries keep their own licenses in `D
 ## CI and release
 
 - `.github/workflows/ci.yml` runs luacheck, stylua, busted with coverage, and a package build on each pull request.
+- `.pkgmeta` (repo root) makes the packager ship only the `DarkmoonTurnIns` folder.
 - `.github/workflows/release.yml` publishes to CurseForge and GitHub when you push a tag `v*`.
 - Before the first release, add the `## X-Curse-Project-ID: <id>` line to the TOC and the `CF_API_TOKEN` repository secret.
 - Keep the TOC `Version` equal to the top `CHANGELOG.md` heading. The tag must match it (for example `v1.0.0`).
