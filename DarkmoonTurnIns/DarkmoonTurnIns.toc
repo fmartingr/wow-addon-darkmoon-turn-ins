@@ -11,6 +11,7 @@
 ## Notes-ptBR: Brilho rosa, aviso na dica e contador para os itens de entrega da Feira da Lua Negra.
 ## Version: 1.0.0
 ## X-License: MIT
+## X-Curse-Project-ID: 1798175
 ## OptionalDeps: Baganator, Syndicator
 ## IconTexture: Interface\AddOns\DarkmoonTurnIns\assets\icon
 ## SavedVariables: DarkmoonTurnInsDB
