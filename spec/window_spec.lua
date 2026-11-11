@@ -86,6 +86,33 @@ describe("Window", function()
 		end)
 	end)
 
+	describe("item data events", function()
+		it("requests each item once and redraws only for known items", function()
+			local n = 0
+			_G.C_Item.RequestLoadItemDataByID = function()
+				n = n + 1
+			end
+			_G.C_Item.GetItemIconByID = function() end
+			ns.Window.ItemName(10)
+			ns.Window.ItemName(10)
+			assert.equals(1, n)
+			ns.Window.Toggle()
+			local onEvent = _G.DarkmoonTurnInsFrame.scripts.OnEvent
+			local refreshed = 0
+			local original = ns.Window.Refresh
+			ns.Window.Refresh = function()
+				refreshed = refreshed + 1
+				return original()
+			end
+			onEvent(nil, "GET_ITEM_INFO_RECEIVED", 999, true)
+			onEvent(nil, "GET_ITEM_INFO_RECEIVED", 10, false)
+			assert.equals(0, refreshed)
+			onEvent(nil, "GET_ITEM_INFO_RECEIVED", 10, true)
+			onEvent(nil, "BAG_UPDATE_DELAYED")
+			assert.equals(2, refreshed)
+		end)
+	end)
+
 	describe("Create", function()
 		it("retries with BasicFrameTemplateWithInset", function()
 			local templates = {}

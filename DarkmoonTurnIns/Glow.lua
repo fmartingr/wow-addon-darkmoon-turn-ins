@@ -130,6 +130,17 @@ function Glow.Install()
 		end
 	end)
 
+	step("mail", function()
+		hooksecurefunc("InboxFrame_Update", function()
+			for i = 1, _G.INBOXITEMS_TO_DISPLAY or 7 do
+				local button = _G["MailItem" .. i .. "Button"]
+				if button and not button.hasItem then
+					Glow.Update(button, nil)
+				end
+			end
+		end)
+	end)
+
 	step("events", function()
 		ns.events:RegisterEvent("BAG_UPDATE_DELAYED")
 	end)
