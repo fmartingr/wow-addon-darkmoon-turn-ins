@@ -16,11 +16,11 @@ local EVENTS = {
 	"BANKFRAME_OPENED",
 	"PLAYERBANKSLOTS_CHANGED",
 	"PLAYERBANKBAGSLOTS_CHANGED",
-	"GET_ITEM_INFO_RECEIVED",
 }
 
 local frame
 local headers, rows = {}, {}
+local requested = {}
 
 local function stateOf(have, need)
 	if have >= need then
@@ -54,7 +54,8 @@ end
 function Window.ItemName(itemID)
 	local name = C_Item and C_Item.GetItemInfo and C_Item.GetItemInfo(itemID)
 	if not name then
-		if C_Item and C_Item.RequestLoadItemDataByID then
+		if not requested[itemID] and C_Item and C_Item.RequestLoadItemDataByID then
+			requested[itemID] = true
 			C_Item.RequestLoadItemDataByID(itemID)
 		end
 		return "..."
@@ -219,7 +220,11 @@ function Window.Create()
 	-- luacov: enable
 
 	registerEvents(frame)
-	frame:SetScript("OnEvent", function()
+	pcall(frame.RegisterEvent, frame, "GET_ITEM_INFO_RECEIVED")
+	frame:SetScript("OnEvent", function(_, event, itemID, success)
+		if event == "GET_ITEM_INFO_RECEIVED" and not (success and ns.Data.IsTurnInItem(itemID)) then
+			return
+		end
 		Window.Refresh()
 	end)
 	frame:SetScript("OnShow", function()
@@ -263,4 +268,5 @@ SlashCmdList["DARKMOONTURNINS"] = Window.HandleSlash
 function Window.Reset()
 	frame = nil
 	headers, rows = {}, {}
+	requested = {}
 end

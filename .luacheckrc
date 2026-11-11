@@ -25,6 +25,7 @@ read_globals = {
 	"GetLocale",
 	"ItemRefTooltip",
 	"LibStub",
+	"INBOXITEMS_TO_DISPLAY",
 	"NUM_CONTAINER_FRAMES",
 	"Syndicator",
 	"TooltipDataProcessor",

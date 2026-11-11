@@ -105,7 +105,7 @@ describe("Glow", function()
 			_G.ContainerFrame1 = one
 			ns.Glow.Install()
 			assert.equals("SetItemButtonQuality", hooks[1].target)
-			assert.equals(3, #hooks)
+			assert.equals(4, #hooks)
 			assert.same({ "BAG_UPDATE_DELAYED" }, registered)
 		end)
 
@@ -136,7 +136,11 @@ describe("Glow", function()
 				end,
 			}
 			ns.Glow.Install()
-			hooks[#hooks].fn()
+			for _, h in ipairs(hooks) do
+				if h.target == frame then
+					h.fn()
+				end
+			end
 			assert.is_true(b1.children[1].shown)
 			assert.equals(0, #b2.children)
 			b1.children[1].shown = false
@@ -176,6 +180,26 @@ describe("Glow", function()
 			ns.Glow.Install()
 			assert.is_true(#_G.DEFAULT_CHAT_FRAME.lines >= 1)
 			assert.is_true(#registered == 1)
+		end)
+
+		it("clears the glow on mail rows without an attachment", function()
+			ns.Glow.Install()
+			local hook
+			for _, h in ipairs(hooks) do
+				if h.target == "InboxFrame_Update" then
+					hook = h.fn
+				end
+			end
+			assert.is_function(hook)
+			local b = wow.newFrame()
+			ns.Glow.Update(b, 10)
+			_G.MailItem1Button = b
+			b.hasItem = true
+			hook()
+			assert.is_true(b.children[1].shown)
+			b.hasItem = nil
+			hook()
+			assert.is_false(b.children[1].shown)
 		end)
 
 		it("ignores other events", function()
